@@ -1,0 +1,23 @@
+.array-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around; /* Distribute space evenly */
+  height: 500px; /* Increase height to accommodate larger values */
+  margin: 20px;
+  border: 1px solid #ccc;
+  max-width: 100%; /* Ensure it doesn't overflow the viewport */
+  white-space: nowrap; /* Prevent wrapping */
+  padding-bottom: 10px; /* Add some padding to avoid clipping */
+}
+
+.array-element {
+  width: 5px; /* Make the elements thinner */
+  color: white;
+  display: inline-flex; /* Use inline-flex to respect white-space: nowrap */
+  align-items: flex-end;
+  justify-content: center;
+  font-size: 8px; /* Adjust font size to fit within smaller elements */
+  margin: 0 1px; /* Adjust spacing to fit more elements */
+  background-color: #3e48b5;
+  transition: background-color 0.3s;
+}
