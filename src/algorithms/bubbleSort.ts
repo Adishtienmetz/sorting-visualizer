@@ -16,5 +16,6 @@ const bubbleSort = (array: number[]): [number, number, number | null, number | n
     }
     return animations;
   };
+
   
-  export default bubbleSort;
+export default bubbleSort;

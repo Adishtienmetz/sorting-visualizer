@@ -1,11 +1,13 @@
 import React, {  useState, useRef  } from 'react'
 import ArrayVisualizer from './ArrayVisualizer'
 import bubbleSort from '../algorithms/bubbleSort'
+import mergeSort from '../algorithms/mergeSort'
 
 interface AlgorithmVisualizerProps {
 }
 
 const ARRAYSIZE = 100;
+const SPEED = 5
 
 const originalArray : number[] = [];
 for (let i = 0; i < ARRAYSIZE; i++) {
@@ -16,7 +18,6 @@ for (let i = 0; i < ARRAYSIZE; i++) {
 const AlgorithmVisualizer: React.FC<AlgorithmVisualizerProps> = () => {
   
   const [array, setArray] = useState<number[]>(originalArray);
-  const [algorithm, setAlgorithm] = useState<((array: number[]) => [number, number, number | null, number | null][])>(() => bubbleSort);
   const [isSorting, setIsSorting] = useState<boolean>(false);
   const [numberOfSteps, setNumberOfSteps] = useState<number>(0);
   const timeoutRefs = useRef<NodeJS.Timeout[]>([]);
@@ -30,23 +31,42 @@ const AlgorithmVisualizer: React.FC<AlgorithmVisualizerProps> = () => {
       setNumberOfSteps(0);
   }
   
-  const handleSort = () => {
+  const handleBubbleSort = () => {
     setIsSorting(true);
-    const animations = algorithm(array);
+    const animations = bubbleSort(array);
     setNumberOfSteps(animations.length + animations.filter(animation => animation[2] !== null).length);
   
     animations.forEach((animation, i) => {
       const timeoutId = setTimeout(() => {
         setArray(prevArray => {
           const newArray = prevArray.slice();
-          if (animation[2] !== null && animation[3] !== null) {
+          if (animation[2] && animation[3]) {
             newArray[animation[0]] = animation[2];
             newArray[animation[0] + 1] = animation[3];
           }
           return newArray;
         });
         // Update the numberOfSwaps state after each animation step
-      }, i * 3); // Adjust the delay as needed for visualization speed
+      }, i * SPEED); // Adjust the delay as needed for visualization speed
+      timeoutRefs.current.push(timeoutId);
+    });
+  };
+
+  const handleMergeSort = () => {
+    setIsSorting(true);
+    const animations = mergeSort(array)[1];
+    setNumberOfSteps(animations.length);
+    animations.forEach((animation, i) => {
+      const timeoutId = setTimeout(() => {
+        setArray(prevArray => {
+          const newArray = prevArray.slice();
+          if ( !animation.comparison) {
+            newArray[animation.merge.index] = animation.merge.value;
+          }
+          return newArray;
+        });
+        // Update the numberOfSwaps state after each animation step
+      }, i * SPEED); // Adjust the delay as needed for visualization speed
       timeoutRefs.current.push(timeoutId);
     });
   };
@@ -72,14 +92,30 @@ const AlgorithmVisualizer: React.FC<AlgorithmVisualizerProps> = () => {
     setNumberOfSteps(0);
   };
 
+  const handleBestCase = (): void => {
+    resetArray();
+    const newArray: number[] = [];
+    for (let i = 0; i < ARRAYSIZE; i++) {
+      newArray.push(i);
+    }
+    setArray(newArray);
+    setNumberOfSteps(0);
+  };
+
   return (
     <div>
       <div className='control-panel'>
-        <button name='sort-button' disabled={isSorting} onClick={handleSort}>
+        <button name='bubble-sort-button' disabled={isSorting} onClick={handleBubbleSort}>
           Bubble Sort
         </button>
         <button name='worse-case' onClick={handleWorseCase}>
           Bubble Sort Worse Case Example
+        </button>
+        <button name='best-case' onClick={handleBestCase}>
+          Bubble Sort Best Case Example
+        </button>
+        <button name='merge-sort-button' disabled={isSorting} onClick={handleMergeSort}>
+          Merge Sort
         </button>
         <button name='generate-button' onClick={handleGenerateArray}>
           Generate Array
