@@ -1,6 +1,6 @@
 # Sorting Visualizer
 
-![image](https://github.com/Adishtienmetz/sorting-visualizer/assets/131026224/e434a486-c73b-4271-96f2-ea61a57de5c4)
+![2024-06-1707-19-45-ezgif com-video-to-gif-converter](https://github.com/Adishtienmetz/sorting-visualizer/assets/131026224/d87e50fc-bdc8-47da-97a4-d1422059d6f2)
 
 A visualization tool for demonstrating sorting algorithms.
 
