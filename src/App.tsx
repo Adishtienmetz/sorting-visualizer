@@ -4,9 +4,11 @@ import AlgorithmVisualizer from './components/AlgorithmVisualizer';
 
 function App() {
   return (
+    <>
     <div className="App">
-      <AlgorithmVisualizer/>
+      <AlgorithmVisualizer />
     </div>
+    </>
   );
 }
 

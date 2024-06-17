@@ -1,6 +1,6 @@
 type QuickAnimation = {
-    comparison: boolean;
-    indices: [number, number];
+    comparison: boolean; // true if its comparison animation, and false if its a swap one.
+    indices: [number, number]; // hplds the indexes that should be swapped.
 };
 
 const quickSort = (array: number[]): QuickAnimation[] => {
@@ -23,7 +23,6 @@ function partition(newArray: number[], low: number, high: number, animations: Qu
     const pivot = newArray[high];
     let i = low - 1;
     for (let j = low; j < high; j++) {
-        // Record the comparison
         animations.push({ comparison: true, indices: [j, high] });
         if (newArray[j] <= pivot) {
             i++;

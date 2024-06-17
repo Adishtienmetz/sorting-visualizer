@@ -2,22 +2,127 @@
   display: flex;
   align-items: flex-end;
   justify-content: space-around; /* Distribute space evenly */
-  height: 500px; /* Increase height to accommodate larger values */
+  height: 380px; /* Increase height to accommodate larger values */
   margin: 20px;
-  border: 1px solid #ccc;
+  border: 3px solid #E6F8B2;
   max-width: 100%; /* Ensure it doesn't overflow the viewport */
   white-space: nowrap; /* Prevent wrapping */
   padding-bottom: 10px; /* Add some padding to avoid clipping */
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .array-element {
   width: 5px; /* Make the elements thinner */
-  color: white;
   display: inline-flex; /* Use inline-flex to respect white-space: nowrap */
   align-items: flex-end;
   justify-content: center;
-  font-size: 8px; /* Adjust font size to fit within smaller elements */
-  margin: 0 1px; /* Adjust spacing to fit more elements */
-  background-color: #3e48b5;
+  margin: 0 1px;
+  background-color: #709176;
   transition: background-color 0.3s;
+}
+
+.code-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 10%;
+}
+
+pre{
+  font-size: large;
+}
+
+.title-container {
+  cursor: default;
+}
+
+.control-panel {
+  background-color: #E6F8B2;
+  padding: 1px 10px;
+  border-bottom: 1px solid #ffffff;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.control-panel a {
+  text-decoration: none;
+  color: inherit;
+  padding: 10px 10px;
+  border-radius: 10px;
+  background-color: #b5cd6b;
+}
+
+.control-panel button {
+  border: 2px solid transparent; /* Set border to transparent to prevent color change */
+  border-radius: 10px; /* Adjust border-radius to control the roundness */
+  padding: 10px 20px; /* Example padding */
+  background-color: #b5cd6b; /* Example background color */
+  color: inherit; /* Example text color */
+  font-size: 16px; /* Example font size */
+}
+
+.control-panel button:disabled {
+  opacity: 0.6; /* Reduce opacity to indicate disabled state */
+  cursor: not-allowed; /* Change cursor to indicate non-interactivity */
+}
+
+.control-panel button:hover {
+  background-color: #b0c17f; /* Example hover background color */
+}
+
+.control-panel select {
+  border: 2px solid transparent; /* Set border to transparent */
+  border-radius: 10px; /* Adjust border-radius for rounded corners */
+  padding: 8px; /* Example padding */
+  font-size: 16px; /* Example font size */
+  background-color: #b5cd6b; /* Example background color */
+  color: #333; /* Example text color */
+}
+
+.control-panel select:hover {
+  background-color: #e0e0e0; /* Example hover background color */
+}
+
+.control-panel select:focus {
+  outline: none; /* Remove default focus outline */
+  border-color: #007bff; /* Example focus border color */
+}
+
+.sorting-buttons, .generate-and-speed {
+  display: flex;
+  gap: 10px;
+}
+
+.sorting-buttons button, .generate-and-speed button, .generate-and-speed select {
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.visualizer-container {
+  margin-top: 20px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.algorithm-code-container {
+  margin-top: 20px;
+  padding: 10px;
+}
+
+@media (max-width: 768px) {
+  .control-panel {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .visualizer-container {
+    flex-direction: column;
+  }
 }
