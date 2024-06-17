@@ -5,6 +5,8 @@ import AlgorithmCode from './AlgorithmCode';
 
 interface AlgorithmVisualizerProps {}
 
+const ARRAYSIZE = 130
+
 const generateArray = (size: number) => {
   const newArray = [];
   for (let i = 0; i < size; i++) {
@@ -15,24 +17,12 @@ const generateArray = (size: number) => {
 };
 
 const AlgorithmVisualizer: React.FC<AlgorithmVisualizerProps> = () => {
-  const [arraySize, setArraySize] = useState(window.innerWidth / 8);
-  const [array, setArray] = useState<number[]>(generateArray(arraySize));
+  const [array, setArray] = useState<number[]>(generateArray(ARRAYSIZE));
   const [isSorting, setIsSorting] = useState<boolean>(false);
   const [numberOfSteps, setNumberOfSteps] = useState<number>(0);
   const [speed, setSpeed] = useState<number>(2);
   const [algorithm, setAlgorithm] = useState<string>('');
   const timeoutRefs = useRef<NodeJS.Timeout[]>([]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      const newSize = window.innerWidth / 8;
-      setArraySize(newSize);
-      setArray(generateArray(newSize));
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   const resetArray = (): void => {
     timeoutRefs.current.forEach(timeoutId => clearTimeout(timeoutId));
@@ -59,7 +49,7 @@ const AlgorithmVisualizer: React.FC<AlgorithmVisualizerProps> = () => {
   const handleGenerateArray = () => {
     resetArray();
     const newArray: number[] = [];
-    for (let i = 0; i < arraySize; i++) {
+    for (let i = 0; i < ARRAYSIZE; i++) {
       const randomNum = Math.floor(Math.random() * 120) + 5;
       newArray.push(randomNum);
     }

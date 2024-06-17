@@ -120,6 +120,18 @@ pre{
   .control-panel {
     flex-direction: column;
     align-items: flex-start;
+    padding-bottom: 3%;
+  }
+
+  .control-panel button, .control-panel select, .control-panel a{
+    padding: 6px 10px; /* Smaller padding */
+    font-size: 12px; /* Smaller font size */
+    width: auto; /* Adjust width as needed */
+  }
+
+  .control-panel h1{
+    margin-bottom: 0;
+    margin-top: 0;
   }
 
   .visualizer-container {
