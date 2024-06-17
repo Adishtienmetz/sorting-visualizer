@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef} from 'react';
 import ArrayVisualizer from './ArrayVisualizer';
 import { handleBubbleSort, handleMergeSort, handleQuickSort } from '../handlers/sortingHandlers';
 import AlgorithmCode from './AlgorithmCode';
